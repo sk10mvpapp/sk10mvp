@@ -14,13 +14,16 @@ struct Sk10mvpApp: App {
 
     var body: some Scene {
         WindowGroup {
-            if coordinator.isLoading {
-                LoadingView()
-            } else if coordinator.isNeedToShowTabBar {
-                TabBarView()
-            } else {
-                AuthView()
+            ZStack {
+                if coordinator.isLoading {
+                    LoadingView()
+                } else if coordinator.isNeedToShowTabBar {
+                    TabBarView()
+                } else {
+                    AuthView()
+                }
             }
-        }.environmentObject(coordinator)
+            .environmentObject(coordinator)
+        }
     }
 }
