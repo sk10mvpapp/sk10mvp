@@ -9,9 +9,21 @@ import SwiftUI
 
 @main
 struct Sk10mvpApp: App {
+
+    @ObservedObject var coordinator = AppCoordinator()
+
     var body: some Scene {
         WindowGroup {
-            LoadingView()
+            ZStack {
+                if coordinator.isLoading {
+                    LoadingView()
+                } else if coordinator.isNeedToShowTabBar {
+                    TabBarView()
+                } else {
+                    AuthView()
+                }
+            }
+            .environmentObject(coordinator)
         }
     }
 }
