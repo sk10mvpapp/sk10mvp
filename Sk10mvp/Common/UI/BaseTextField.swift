@@ -12,6 +12,8 @@ enum TextFieldType {
     case email
     case password
     case name
+    case appart
+    case confirmPassword
 }
 
 struct BaseTextField: View {
@@ -44,7 +46,7 @@ struct BaseTextField: View {
                     _textField()
                         .keyboardType(getKeyboardType())
                         .frame(maxWidth: .infinity)
-                        .frame(height: 50)
+                        .frame(height: 56)
                         .focused($isActive)
                         .padding(.leading, 12)
                         .offset(y: (isActive || !text.isEmpty) ? 10 : 0)
@@ -56,12 +58,13 @@ struct BaseTextField: View {
                         Image(systemName: isShowPassword ? "eye" : "eye.slash")
                             .foregroundColor(.gray)
                     }
-                    .isShow(type == .password)
+                    .isShow(type == .password || type == .confirmPassword)
                     .padding(.trailing, 12)
                 }
 
             }
             .modifier(textFieldModifier(borderColor: getBorderColor() ))
+            .padding(.horizontal, 16)
             if let errorText = errorMessage {
                 Text(errorText)
                     .foregroundStyle(Color.red)
@@ -95,6 +98,8 @@ struct BaseTextField: View {
         switch type {
         case .email:
                 .emailAddress
+        case .appart:
+                .numberPad
         default: .default
         }
     }
@@ -107,6 +112,10 @@ struct BaseTextField: View {
             placeholder = "Пароль"
         case .name:
             placeholder = "Имя"
+        case .appart:
+            placeholder = "Номер квартиры"
+        case .confirmPassword:
+            placeholder = "Подтвердите пароль"
         }
     }
 

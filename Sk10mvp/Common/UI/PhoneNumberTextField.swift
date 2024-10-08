@@ -48,6 +48,7 @@ struct PhoneNumberTextField: View {
                 }
             }
             .modifier(textFieldModifier(borderColor: getBorderColor() ))
+            .padding(.horizontal, 16)
             if let errorText = errorMessage {
                 Text(errorText)
                     .foregroundStyle(Color.red)

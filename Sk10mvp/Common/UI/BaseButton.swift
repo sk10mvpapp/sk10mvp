@@ -48,10 +48,12 @@ struct BaseButton: View {
                         .stroke(Color.gray, lineWidth: 1)
                         .background(Color.clear)
                         .frame(maxWidth: .infinity, maxHeight: 56)
+                        .frame(minHeight: 56)
                 } else {
                     RoundedRectangle(cornerRadius: 12)
-                        .fill(isDisabled ? Color(.lightGray) : Color.blue)
+                        .fill(isDisabled ? Color(.lightGray).opacity(0.25) : Color.blue)
                         .frame(maxWidth: .infinity, maxHeight: 56)
+                        .frame(minHeight: 56)
                 }
                 if !isLoading {
                     HStack {
@@ -66,6 +68,7 @@ struct BaseButton: View {
                         .frame(width: 18, height: 18)
                 }
             }
+            .padding(.horizontal, 16)
         })
         .disabled(self.isDisabled || self.isLoading)
     }
