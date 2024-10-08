@@ -17,8 +17,8 @@ struct TabBarView: View {
             Group {
                 firstView
                     .tabItem {
-                        Image(systemName: selectedTab == 0 ? "person.crop.circle" : "person.crop.circle.fill")
-                        Text("first")
+                        Image(systemName: selectedTab == 0 ? "newspaper" : "newspaper.fill")
+                        Text("Новости")
                     }.tag(0)
 
                 secondView
@@ -42,8 +42,8 @@ struct TabBarView: View {
     // MARK: -  Dasboard
     var firstView: some View {
         NavigationView {
-            Text("first")
-                .navigationTitle("first")
+            NewsView()
+                .navigationTitle("Новости")
         }
     }
 
